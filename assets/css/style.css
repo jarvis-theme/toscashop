@@ -744,13 +744,23 @@ footer .copyright p {margin:0}
 .listimg{max-width: 150px}
 #listcontainer{padding: 0;margin-right: 15px}
 .titlehal{margin-bottom: 3px}
+.bloglist h4 a, .bloglist .date-post a, .date-post a, #latest-news ul li a, .category-blog{color: #000}
 #tagsblog{margin-bottom: 15px}.da-dots span.da-dots-current{background: #258a20 !important}
-.white{color: #fff}.privacy{color: #258a20}
+.white{color: #fff}.privacy{color: #258a20}.copyright img{border-radius: 7px; padding: 2px}
 .desktop-logo{width:auto !important;height:108px !important}
 #text-logo{margin:42px 0}#p-slide {background: #54ce48 !important}
 .url-textlogo{color: #54ce48}.da-dots span{background: #e8fee9 !important}
 .nodecoration{text-decoration:none}.views{ position: relative; top: -6px; right: 5px }
 #toplink{padding-bottom: 5px}.search-form{padding: 0}
+.powerup form input[type="submit"]{
+	background: #82C055;
+	border: transparent;
+	padding: 5px;
+	border-radius: 5px;
+	color: #fff;
+	margin-top: 5px;
+}
+.powerup form input[type="submit"]:hover{opacity: 0.7}
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 	.top-list h2.title{width: 60%}
 }

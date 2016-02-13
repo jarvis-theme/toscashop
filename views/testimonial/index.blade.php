@@ -1,12 +1,13 @@
                 <div class="container">
                 	<div class="inner-column row">
                         <div id="left_sidebar" class="col-lg-3 col-xs-12 col-sm-4">
+                            @if(list_category()->count() > 0)
                             <div id="categories" class="block sidey">
                             	<ul class="block-content nav">
                                 @foreach(list_category() as $side_menu)
                                     @if($side_menu->parent == '0')
                                     <li>
-                                        <a href="{{category_url($side_menu)}}">{{$side_menu->nama}}<!-- <span class="arrow-right"></span> --></a>
+                                        <a href="{{category_url($side_menu)}}">{{$side_menu->nama}}</a>
                                         @if($side_menu->anak->count() != 0)
                                         <ul class="sidebars">
                                             @foreach($side_menu->anak as $submenu)
@@ -34,6 +35,8 @@
                                 @endforeach
                                 </ul>
                             </div>
+                            @endif
+                            @if(best_seller()->count() > 0)
                             <div id="best-seller" class="block">
                             	<div class="title"><h2>Produk Terlaris</h2></div>
                             	<ul class="block-content">
@@ -53,6 +56,7 @@
                                 	<a href="{{URL::to('produk')}}">Lihat Semua</a>
                                 </div>
                             </div>
+                            @endif
                             <div id="advertising" class="block">
                                 @foreach(vertical_banner() as $banner)    
                                 <div class="img-block">
@@ -96,7 +100,7 @@
                         </div>
                     </div>
                     <div>
-                        @foreach(horizontal_banner() as $banner)    
+                        @foreach(horizontal_banner() as $banner)  
                         <a href="{{URL::to($banner->url)}}">
                             {{HTML::image(banner_image_url($banner->gambar), 'Info Promo', array('width'=>'1168', 'height'=>'200', "class"=>"img-responsive"))}}
                         </a>

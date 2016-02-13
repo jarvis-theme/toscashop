@@ -1,5 +1,5 @@
-				<div class="container">
-                	<div class="inner-column row">
+                <div class="container">
+                    <div class="inner-column row">
                         <div id="center_column" class="col-lg-12 col-xs-12">
                             <div class="product-list col-xs-12">
                                 <div class="top-list">
@@ -41,10 +41,10 @@
                         </div>
                     </div>
                     <div class="small-banner">
-                        @foreach(horizontal_banner() as $banner)	
+                        @foreach(horizontal_banner() as $banner)  
                         <a href="{{url($banner->url)}}">
-                        	{{HTML::image(banner_image_url($banner->gambar), 'Info Promo', array('width'=>'1168', 'height'=>'200', "class"=>"img-responsive"))}}
-                    	</a>
-                	   @endforeach	
+                            {{HTML::image(banner_image_url($banner->gambar), 'Info Promo', array('width'=>'1168', 'height'=>'200', "class"=>"img-responsive"))}}
+                        </a>
+                       @endforeach  
                     </div>
                 </div>

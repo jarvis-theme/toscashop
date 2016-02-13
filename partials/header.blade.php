@@ -18,18 +18,18 @@
                 </div>
             </div>
             <header>
-            	<div class="top-head">
-                	<div class="container">
-                    	<div class="row desktop-only col-sm-8">
+                <div class="top-head">
+                    <div class="container">
+                        <div class="row desktop-only col-sm-8">
                             <div id="top_testimonial" class="col-sm-6 pull-left">
                                 @foreach(random_testimonial(1) as $value)
                                 <p>{{short_description($value->isi, 94)}} <br><span>~{{$value->nama}}</span></p>
                                 @endforeach
                             </div>
                             <div id="logo" class="col-sm-6">
-                                @if(@getimagesize( url(logo_image_url()) ))
+                                @if( logo_image_url() )
                                 <a href="{{ url('home') }}">
-                                    {{HTML::image(logo_image_url(), 'Logo', array('class'=>'desktop-logo'))}}
+                                    {{HTML::image(logo_image_url(), 'Logo '.Theme::place('title'), array('class'=>'desktop-logo'))}}
                                 </a>
                                 @else
                                 <h3 id="text-logo">
@@ -41,10 +41,10 @@
                             </div>
                         </div>
                         <div class="row mobile-only logo-mobile">
-                        	<div id="logo" class="col-xs-12">
-                                @if(@getimagesize(url( logo_image_url() )))
+                            <div id="logo" class="col-xs-12">
+                                @if( logo_image_url() )
                                 <a href="{{url('home')}}">
-                                    {{HTML::image(logo_image_url(), 'Logo', array('class'=>'desktop-logo'))}}
+                                    {{HTML::image(logo_image_url(), 'Logo '.Theme::place('title'), array('class'=>'desktop-logo'))}}
                                 </a>
                                 @else
                                 <a class="nodecoration" href="{{url('home')}}">
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>        
+                        </div>
                     </div>
                 </nav>
-			</header>
+            </header>

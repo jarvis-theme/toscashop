@@ -1,6 +1,7 @@
                 <div class="container">
                 	<div class="inner-column row">
                         <div id="left_sidebar" class="col-lg-3 col-xs-12 col-sm-4">
+                            @if(list_category()->count() > 0)
                             <div id="categories" class="block sidey">
                             	<ul class="block-content nav">
                                 @foreach(list_category() as $side_menu)
@@ -34,6 +35,11 @@
                                 @endforeach
                                 </ul>
                             </div>
+                            @endif
+                            <div class="powerup">
+                                {{pluginSidePowerup()}}
+                            </div>
+                            @if(best_seller()->count() > 0)
                             <div id="best-seller" class="block">
                             	<div class="title"><h2>Produk Terlaris</h2></div>
                             	<ul class="block-content">
@@ -53,10 +59,12 @@
                                 	<a href="{{url('produk')}}">Lihat Semua</a>
                                 </div>
                             </div>
+                            @endif
+                            @if(recentBlog()->count() > 0)
                             <div id="latest-news" class="block">
                             	<div class="title"><h2>Artikel Terbaru</h2></div>
                             	<ul class="block-content">
-                                    @foreach(list_blog(2) as $blogs)
+                                    @foreach(recentBlog(null,2) as $blogs)
                                     <li>
                                         <h5 class="title-news">{{$blogs->judul}}</h5>
                                         <p>{{short_description($blogs->isi, 150)}} <a class="read-more" href="{{blog_url($blogs)}}">Baca Selengkapnya</a></p>
@@ -65,6 +73,7 @@
                                     @endforeach
                                 </ul>
                             </div>
+                            @endif
                             <div id="advertising" class="block">
                                 @foreach(vertical_banner() as $banner)    
                                 <div class="img-block">

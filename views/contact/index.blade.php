@@ -1,6 +1,7 @@
 <div class="container">
     <div class="inner-column row">
         <div id="left_sidebar" class="col-lg-3 col-xs-12 col-sm-4">
+            @if(list_category()->count() > 0)
             <div id="categories" class="block sidey">
                 <ul class="block-content nav">
                 @foreach(list_category() as $side_menu)
@@ -34,10 +35,12 @@
                 @endforeach
                 </ul>
             </div>
+            @endif
+            @if(recentBlog()->count() > 0)
             <div id="latest-news" class="block">
                 <div class="title"><h2>Artikel Terbaru</h2></div>
                 <ul class="block-content">
-                    @foreach(list_blog(2) as $artikel)
+                    @foreach(recentBlog(null,2) as $artikel)
                     <li>
                         <h5 class="title-news article-title">{{short_description($artikel->judul, 28)}}</h5>
                         <p>{{short_description($artikel->isi, 150)}} <a class="read-more" href="{{blog_url($artikel)}}">Selengkapnya</a></p>
@@ -46,6 +49,7 @@
                     @endforeach
                 </ul>
             </div>
+            @endif
             <div id="advertising" class="block">
                 @foreach(vertical_banner() as $banners)
                 <div class="img-block">
