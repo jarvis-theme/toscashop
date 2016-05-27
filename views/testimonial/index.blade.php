@@ -1,9 +1,9 @@
                 <div class="container">
-                	<div class="inner-column row">
+                    <div class="inner-column row">
                         <div id="left_sidebar" class="col-lg-3 col-xs-12 col-sm-4">
                             @if(list_category()->count() > 0)
                             <div id="categories" class="block sidey">
-                            	<ul class="block-content nav">
+                                <ul class="block-content nav">
                                 @foreach(list_category() as $side_menu)
                                     @if($side_menu->parent == '0')
                                     <li>
@@ -38,12 +38,12 @@
                             @endif
                             @if(best_seller()->count() > 0)
                             <div id="best-seller" class="block">
-                            	<div class="title"><h2>Produk Terlaris</h2></div>
-                            	<ul class="block-content">
+                                <div class="title"><h2>Produk Terlaris</h2></div>
+                                <ul class="block-content">
                                     @foreach(best_seller() as $best)
                                     <li>
-                                    	<a href="{{product_url($best)}}">
-                                        	<div class="img-block">
+                                        <a href="{{product_url($best)}}">
+                                            <div class="img-block">
                                                 {{HTML::image(product_image_url($best->gambar1,'thumb'), $best->nama,array('width'=>'81','height'=>'auto','title'=>$best->nama))}}
                                             </div>
                                             <p class="product-name">{{short_description($best->nama,25)}}</p>
@@ -53,7 +53,7 @@
                                     @endforeach
                                 </ul>
                                 <div class="btn-more">
-                                	<a href="{{URL::to('produk')}}">Lihat Semua</a>
+                                    <a href="{{URL::to('produk')}}">Lihat Semua</a>
                                 </div>
                             </div>
                             @endif

@@ -58,7 +58,9 @@
                     <div class="container">
                         <div class="col-sm-6 col-xs-12 pull-right">
                             @foreach(list_banks() as $banks)    
-                            {{HTML::image(bank_logo($banks), $banks->bankdefault->nama, array('title'=>$banks->bankdefault->nama))}}
+                                @if($banks->status == 1)
+                                {{HTML::image(bank_logo($banks), $banks->bankdefault->nama, array('title'=>$banks->bankdefault->nama))}}
+                                @endif
                             @endforeach 
                             @foreach(list_payments() as $pay)
                                 @if($pay->nama == 'paypal' && $pay->aktif == 1)

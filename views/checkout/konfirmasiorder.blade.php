@@ -90,7 +90,7 @@
         <div class="row">
             @if($order->jenisPembayaran == 1 && $order->status == 0)
             <div class="col-md-offset-3 col-md-5">
-                <h2>Konfirmasi Pembayaran</h2>
+                <h2>{{trans('content.step5.confirm_btn')." ".trans('content.step3.transfer')}}</h2>
                 <hr>
                 @if($checkouttype==1)   
                 {{-- */ $url = 'konfirmasiorder/' /* --}}
@@ -127,57 +127,82 @@
                             @endif
                         @endif
                     </div>
-                    <button type="submit" class="btn btn-green">Konfirmasi</button>
+                    <button type="submit" class="btn btn-green">{{trans('content.step5.confirm_btn')}}</button>
                 {{Form::close()}}
             @endif
             </div>
         </div>
 
-        @if($paymentinfo!=null)
-        <h3><center>Paypal Payment Details</center></h3><br>
-        <hr>
-        <div class="table-responsive">
-            <table class='table table-bordered'>
-                <tr>
-                    <td>Payment Status</td><td>:</td><td>{{$paymentinfo['payment_status']}}</td>
-                </tr>
-                <tr>
-                    <td>Payment Date</td><td>:</td><td>{{$paymentinfo['payment_date']}}</td>
-                </tr>
-                <tr>
-                    <td>Address Name</td><td>:</td><td>{{$paymentinfo['address_name']}}</td>
-                </tr>
-                <tr>
-                    <td>Payer Email</td><td>:</td><td>{{$paymentinfo['payer_email']}}</td>
-                </tr>
-                <tr>
-                    <td>Item Name</td><td>:</td><td>{{$paymentinfo['item_name1']}}</td>
-                </tr>
-                <tr>
-                    <td>Receiver Email</td><td>:</td><td>{{$paymentinfo['receiver_email']}}</td>
-                </tr>
-                <tr>
-                    <td>Total Payment</td><td>:</td><td>{{$paymentinfo['payment_gross']}} {{$paymentinfo['mc_currency']}}</td>
-                </tr>
-            </table>
-        </div>
-        <p>Thanks you for your order.</p><br>
-        @endif 
-      
-        @if($order->jenisPembayaran==2)
-        <hr>
-        <h3><b><center>Konfirmasi Pemabayaran Via Paypal</center></b></h3><br>
-        <p>Silakan melakukan pembayaran dengan paypal Anda secara online via paypal payment gateway. Transaksi ini berlaku jika pembayaran dilakukan sebelum {{$expired}}. Klik tombol "Bayar Dengan Paypal" di bawah untuk melanjutkan proses pembayaran.</p>
-        {{$paypalbutton}}
-        <br>
-        @elseif($order->jenisPembayaran==6)
-            @if($order->status == 0)
+        <div class="container">
+            @if($paymentinfo!=null)
+            <h3><center>Paypal Payment Details</center></h3><br>
             <hr>
-            <h3><b><center>Konfirmasi Pembayaran Via Bitcoin</center></b></h3><br>
-            <p>Silahkan melakukan pembayaran dengan bitcoin Anda secara online via bitcoin payment gateway. Transaksi ini berlaku jika pembayaran dilakukan sebelum <b>{{$expired_bitcoin}}</b>. Klik tombol "Pay with Bitcoin" di bawah untuk melanjutkan proses pembayaran.</p>
-            {{$bitcoinbutton}}
-            <br>
+            <div class="table-responsive">
+                <table class='table table-bordered'>
+                    <tr>
+                        <td>Payment Status</td><td>:</td><td>{{$paymentinfo['payment_status']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Date</td><td>:</td><td>{{$paymentinfo['payment_date']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Address Name</td><td>:</td><td>{{$paymentinfo['address_name']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Payer Email</td><td>:</td><td>{{$paymentinfo['payer_email']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Item Name</td><td>:</td><td>{{$paymentinfo['item_name1']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Receiver Email</td><td>:</td><td>{{$paymentinfo['receiver_email']}}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Payment</td><td>:</td><td>{{$paymentinfo['payment_gross']}} {{$paymentinfo['mc_currency']}}</td>
+                    </tr>
+                </table>
+            </div>
+            <p>Thanks you for your order.</p><br>
+            @endif 
+          
+            @if($order->jenisPembayaran==2)
+                <center>
+                    <h2><b>{{trans('content.step5.confirm_btn')}} Paypal</b></h2><hr>
+                    <p>{{trans('content.step5.paypal')}}</p>
+                </center><br>
+                <center id="paypal">{{$paypalbutton}}</center>
+                <br>
+            @elseif($order->jenisPembayaran==4) 
+                @if(($checkouttype==1 && $order->status < 2) || ($checkouttype==3 && ($order->status!=6)))
+                <center>
+                    <h2><b>{{trans('content.step5.confirm_btn')}} iPaymu</b></h2><hr>
+                    <p>{{trans('content.step5.ipaymu')}}</p><br>
+                    <a class="btn-pay" href="{{url('ipaymu/'.$order->id)}}" target="_blank">{{trans('content.step5.ipaymu_btn')}}</a>
+                    <br>
+                </center>
+                @endif
+            @elseif($order->jenisPembayaran==5 && $order->status == 0)
+                <center>
+                    <h2><b>{{trans('content.step5.confirm_btn')}} DOKU MyShortCart</b></h2><hr>
+                    <p>{{trans('content.step5.doku')}}</p><br>
+                    {{ $doku_button }}
+                    <br>
+                </center>
+            @elseif($order->jenisPembayaran == 6 && $order->status == 0)
+                <center>
+                    <h2><b>{{trans('content.step5.confirm_btn')}} Bitcoin</b></h2><hr>
+                    <p>{{trans('content.step5.bitcoin')}}</p><br>
+                    {{$bitcoinbutton}}
+                    <br>
+                </center>
+            @elseif($order->jenisPembayaran == 8 && $order->status == 0)
+                <center>
+                    <h2><b>{{trans('content.step5.confirm_btn')}} Veritrans</b></h2><hr>
+                    <p>{{trans('content.step5.veritrans')}}</p><br>
+                    <button class="btn-pay" onclick="location.href='{{ $veritrans_payment_url }}'">{{trans('content.step5.veritrans_btn')}}</button>
+                    <br>
+                </center>
             @endif
-        @endif
+        </div>
     </div>
 </div>

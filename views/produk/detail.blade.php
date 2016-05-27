@@ -210,7 +210,7 @@
                             @endif
                             <div class="row col-xs-12" id="comment-product">
                                 <hr>
-                                {{pluginTrustklik()}}
+                                {{ pluginComment(product_url($produk), @$produk) }}
                             </div>
                         </div>
                     </div>
